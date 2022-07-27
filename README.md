@@ -1,2 +1,7 @@
-# basic-discord-keylogger
-A basic keylogger connected to Discord (shouldn't be detected)
+# Python Keylogger
+
+Functions:
+  - detect opened window
+  - detect mouse clicks
+  - detect keyboard presses
+  - send the file to somewhere and delete it
